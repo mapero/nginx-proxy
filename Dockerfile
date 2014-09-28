@@ -1,5 +1,5 @@
 FROM ubuntu:14.04
-MAINTAINER Jason Wilder jwilder@litl.com
+MAINTAINER Jochen Scheib webmaster@mapero.de
 
 # Install Nginx.
 RUN echo "deb http://ppa.launchpad.net/nginx/stable/ubuntu trusty main" > /etc/apt/sources.list.d/nginx-stable-trusty.list
@@ -24,7 +24,10 @@ RUN mkdir /app
 WORKDIR /app
 ADD . /app
 
+VOLUME /certs
+
 EXPOSE 80
+EXPOSE 443
 ENV DOCKER_HOST unix:///tmp/docker.sock
 
 CMD ["forego", "start", "-r"]
